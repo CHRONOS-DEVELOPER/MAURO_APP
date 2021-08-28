@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Mauro</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body onload="welcome()">
+    <br><br>
+    <div id="screen">
+        <img id="imgtitle" src="../icons/home_icon.png">
+        <h1 class="title">Biblioteca Mauro</h1>
+        <h1 class="title"></h1>
+        <input class="form-control" type="email" id="user" placeholder="USUÁRIO">
+        <br>
+        <input class="form-control" type="password" id="password" placeholder="SENHA">
+        <br>
+        <div id="welcomebutton">
+            <button onclick="login()" class="btn btn-outline-success btn-group-lg">LOGIN</button>
+        </div>
+    </div>
+    <script src="../src/welcome.js"></script>
+</body>
+
+</html>

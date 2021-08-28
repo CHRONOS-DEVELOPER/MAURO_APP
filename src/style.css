@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+body {
+    background-color: #dbfcdb;
+    text-align: center;
+}
+
+.title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 7vw;
+    color: #00fc00;
+    margin-top: 0;
+}
+
+#imgtitle {
+    width: 25vw;
+    height: 50vh;
+}
+
+.form-control {
+    width: 50vw;
+    text-align: center;
+    margin: 0 25vw;
+}

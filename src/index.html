@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Mauro</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styleindex.css">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div id="menu" class="col col-3 bg-escola-dark">
+            <img id="logo" src="../icons/home_icon.png">
+            <h2 class="textlogo">BIBLIOTECA MAURO</h2>
+            <button type="button" onclick="javascript:window.location.assign('../src/index.html')" class="btn btn-outline-success btn-lg btn-block">HOME</button>
+            <br>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block">EMPRÉSTIMO</button>
+            <br>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block">DEVOLUÇÃO</button>
+            <br>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block">ACERVO DE LIVROS</button>
+            <br>
+            <button type="button" class="btn btn-outline-success btn-lg btn-block">FICHA DE ALUNO</button>
+            <br>
+            <button onclick="cadastrarlivro()" type="button" class="btn btn-outline-success btn-lg btn-block">CADASTRAR LIVROS</button>
+            <br>
+            <button onclick="configpage()" type="button" class="btn btn-lg btn-outline-success btn-block">CONFIGURAÇÕES</button>
+        </div>
+        <div id="screenmain" class="col bg-escola text-center">
+
+        </div>
+    </div>
+    <script src="../src/index.js"></script>
+</body>
+
+</html>
