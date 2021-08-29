@@ -1,10 +1,11 @@
+document.getElementById("user").addEventListener('focus', document.getElementById("user").focus())
 window.buttonwelcome = document.getElementById("welcomebutton")
 document.getElementById("user").addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            document.getElementById("password").focus();
-        }
-    })
-    //document.getElementById("password")
+    if (e.key === 'Enter') {
+        document.getElementById("password").focus();
+    }
+})
+
 
 function welcome() {
     if (localStorage.AdminUser) {
@@ -42,6 +43,7 @@ function cadastrar() {
 
     }
 }
+
 
 function login() {
     user = document.getElementById("user").value;
