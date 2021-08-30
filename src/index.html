@@ -18,20 +18,20 @@
     </style>
 </head>
 
-<body>
+<body id="body" onload="homepage()">
     <div class="row">
         <div id="menu" class="col col-3 bg-escola-dark">
             <img id="logo" src="../icons/home_icon.png">
             <h2 class="textlogo">BIBLIOTECA MAURO</h2>
             <button type="button" onclick="javascript:window.location.assign('../src/index.html')" class="btn btn-outline-success btn-lg btn-block">HOME</button>
             <br>
-            <button type="button" class="btn btn-outline-success btn-lg btn-block">EMPRÉSTIMO</button>
+            <button onclick="emprestarlivropage()" type="button" class="btn btn-outline-success btn-lg btn-block">EMPRÉSTIMO</button>
             <br>
-            <button type="button" class="btn btn-outline-success btn-lg btn-block">DEVOLUÇÃO</button>
+            <button onclick="devolverlivropage()" type="button" class="btn btn-outline-success btn-lg btn-block">DEVOLUÇÃO</button>
             <br>
-            <button type="button" class="btn btn-outline-success btn-lg btn-block">ACERVO DE LIVROS</button>
+            <button onclick="acessaracervopage()" type="button" class="btn btn-outline-success btn-lg btn-block">ACERVO DE LIVROS</button>
             <br>
-            <button type="button" class="btn btn-outline-success btn-lg btn-block">FICHA DE ALUNO</button>
+            <button onclick="pesquisarfichapage()" type="button" class="btn btn-outline-success btn-lg btn-block">FICHA DE ALUNO</button>
             <br>
             <button onclick="cadastrarlivropage()" type="button" class="btn btn-outline-success btn-lg btn-block">CADASTRAR LIVROS</button>
             <br>
