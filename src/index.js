@@ -1,7 +1,7 @@
 window.screenmain = document.getElementById("screenmain")
 
 function configpage() {
-    screenmain.innerHTML = "<style>.btn-lg-lg{font-size:3vw;margin-top:5vh}</style><h1 class='textlogo' style='color:#999999;'> CONFIGURAÇÕES </h1><br><button onclick='configuraradminpage()' class='btn btn-block btn-outline-success btn-lg-lg'type='button'>CONFIGURAÇÕES DE ADMIN</button><br><button onclick='imprimir()'class='btn btn-block btn-outline-success btn-lg-lg'type='button'>IMPRIMIR RELATÓRIO</button><br><button onclick='telaupload()'class='btn btn-block btn-outline-success btn-lg-lg'type='button'>IMPORTAR DADOS</button><br><button onclick='gerararquivo()'class='btn btn-block btn-outline-success btn-lg-lg'type='button'>EXPORTAR DADOS</button><br>"
+    screenmain.innerHTML = "<style>.btn-lg-lg{font-size:3vw;margin-top:5vh}</style><h1 class='textlogo' style='color:#999999;'> CONFIGURAÇÕES </h1><br><button onclick='configuraradminpage()' class='btn btn-block btn-outline-success btn-lg-lg'type='button'>CONFIGURAÇÕES DE ADMIN</button><br><button onclick='imprimir()'class='btn btn-block btn-outline-success btn-lg-lg'type='button'>IMPRIMIR RELATÓRIO</button><br><button onclick='telaupload()'class='btn btn-block btn-outline-success btn-lg-lg'type='button'>IMPORTAR DADOS</button><br><button onclick='gerararquivo()'class='btn btn-block btn-outline-success btn-lg-lg'type='button'>EXPORTAR DADOS</button><br><button onclick='apagarlivropage()'class='btn btn-block btn-outline-success btn-lg-lg'type='button'>APAGAR LIVRO</button><br>"
 }
 
 function cadastrarlivropage() {
@@ -184,7 +184,7 @@ function homepage() {
     if (localStorage.DB_books) {
         DB_books = JSON.parse(localStorage.DB_books)
 
-        screenmain.innerHTML = "<h1 class='textlogohome' style='color:#999999;'> LIVROS INDISPOÍVEIS </h1><div style=' max-height:95vh; overflow-y:scroll;width:70vw; margin:3vh 2vw;'><table id='tabeladelivros' class='table table-striped table-light'><thead><tr><th scope='col'>NOME DO LIVRO</th><th scope='col'>GÊNERO DO LIVRO</th><th scope='col'>STATUS</th><th scope='col'>ALUNO</th><th scope='col'>DATA DE EMPRÉSTIMO</th></tr></thead><tbody></tbody></table><br></div>"
+        screenmain.innerHTML = "<h1 class='textlogohome' style='color:#999999;'> LIVROS INDISPONÍVEIS </h1><div style=' max-height:95vh; overflow-y:scroll;width:70vw; margin:3vh 2vw;'><table id='tabeladelivros' class='table table-striped table-light'><thead><tr><th scope='col'>NOME DO LIVRO</th><th scope='col'>GÊNERO DO LIVRO</th><th scope='col'>STATUS</th><th scope='col'>ALUNO</th><th scope='col'>DATA DE EMPRÉSTIMO</th></tr></thead><tbody></tbody></table><br></div>"
         n = 1
         DB_books.forEach(element => {
             if (element.status == "indisponível") {
@@ -416,4 +416,71 @@ function imprimir() {
     window.print();
     window.location.assign("index.html")
 
+}
+
+function apagarlivropage() {
+    screenmain.innerHTML = "<h1 class='textlogo' style='color:#999999;'>PROCURAR LIVRO A APAGAR</h1><br><input class='form-control form-control-lg' type='text' id='bookname' placeholder='NOME DO LIVRO'><button onclick='livroapagar()' class='btn btn-block btn-outline-success btn-lg'type='button'>BUSCAR LIVRO</button>"
+    document.getElementById("bookname").focus();
+    document.getElementById("bookname").addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            livroapagar();
+
+        }
+    })
+}
+
+function livroapagar() {
+    var bookname = document.getElementById("bookname").value;
+
+
+    booklist = []
+
+    if (bookname != "") {
+        DB_books = JSON.parse(localStorage.DB_books)
+        window.idlivro = bookname
+        screenmain.innerHTML = "<div style=' max-height:80vh; overflow-y:scroll;width:70vw; margin:3vh 2vw;'><table id='tabeladelivros' class='table table-striped table-light'><thead><tr><th scope='col'>NOME DO LIVRO</th><th scope='col'>GÊNERO DO LIVRO</th><th scope='col'>STATUS</th><th scope='col'>ALUNO</th><th scope='col'>DATA DE EMPRÉSTIMO</th></tr></thead><tbody></tbody></table><br></div><input class='form-control form-control-lg' type='number' id='quantidade' placeholder='QUANTIDADE'><br><button onclick='apagarfinal()' class='btn btn-block btn-outline-success btn-lg'type='button'>APAGAR</button>"
+        n = 1
+        idlivros = [];
+        DB_books.forEach((element, res) => {
+            if (element.bookname == bookname) {
+                table = "<tr><th scope='col'>" + element.bookname + "</th><th scope='col'>" + element.bookgender + "</th><th id='" + n + "' scope='col'>" + element.status + "</th><th id='" + n + "'scope='col'>" + element.aluno + "</th><th scope='col'>" + element.datadeemprestimo + "</th></tr>"
+                $("#tabeladelivros").append(table);
+                idlivros.push(res)
+                if (element.status == "disponível") {
+                    statusstyle = document.getElementById(n).classList.add("text-success")
+                } else {
+                    statusstyle = document.getElementById(n).classList.add("text-danger")
+                }
+
+
+                n++;
+            }
+
+        })
+
+    }
+    document.getElementById("quantidade").focus();
+    document.getElementById("quantidade").addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            apagarfinal();
+
+        }
+    })
+
+}
+
+function apagarfinal() {
+    quantidade = document.getElementById("quantidade").value;
+    DB_books = JSON.parse(localStorage.getItem("DB_books"))
+    if (quantidade > 0 && quantidade <= idlivros.length) {
+        DB_books.splice(idlivros[0], quantidade);
+        localStorage.DB_books = JSON.stringify(DB_books);
+
+    }
+    screenmain.innerHTML = "<h1 class='textlogo' style='color:#999999; margin: 50vh 0'> DADOS ALTERADOS COM SUCESSO!!</h1>"
+    var delayInMilliseconds = 3000;
+
+    setTimeout(function() {
+        homepage()
+    }, delayInMilliseconds);
 }
