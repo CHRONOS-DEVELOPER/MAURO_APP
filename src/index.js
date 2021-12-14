@@ -473,7 +473,13 @@ function apagarfinal() {
     quantidade = document.getElementById("quantidade").value;
     DB_books = JSON.parse(localStorage.getItem("DB_books"))
     if (quantidade > 0 && quantidade <= idlivros.length) {
-        DB_books.splice(idlivros[0], quantidade);
+        q = 0;
+        while (q < quantidade) {
+            DB_books.splice((idlivros[q] - q), 1);
+            console.log((idlivros[q] - q))
+            q++
+        }
+
         localStorage.DB_books = JSON.stringify(DB_books);
 
     }
