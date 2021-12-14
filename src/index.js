@@ -481,12 +481,12 @@ function apagarfinal() {
         }
 
         localStorage.DB_books = JSON.stringify(DB_books);
-
-    }
-    screenmain.innerHTML = "<h1 class='textlogo' style='color:#999999; margin: 50vh 0'> DADOS ALTERADOS COM SUCESSO!!</h1>"
+screenmain.innerHTML = "<h1 class='textlogo' style='color:#999999; margin: 50vh 0'> DADOS ALTERADOS COM SUCESSO!!</h1>"
     var delayInMilliseconds = 3000;
 
     setTimeout(function() {
         homepage()
     }, delayInMilliseconds);
+    }
+    
 }
